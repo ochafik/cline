@@ -180,7 +180,11 @@ export class VertexHandler extends BaseProvider implements SingleCompletionHandl
 		}
 	}
 
-	private async *createGeminiMessage(systemPrompt: string, messages: Anthropic.Messages.MessageParam[]): ApiStream {
+	private async *createGeminiMessage(
+		systemPrompt: string,
+		messages: Anthropic.Messages.MessageParam[],
+		tools?: Anthropic.Tool[],
+	): ApiStream {
 		const model = this.geminiClient.getGenerativeModel({
 			model: this.getModel().id,
 			systemInstruction: systemPrompt,

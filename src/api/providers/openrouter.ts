@@ -48,6 +48,7 @@ export class OpenRouterHandler extends BaseProvider implements SingleCompletionH
 	override async *createMessage(
 		systemPrompt: string,
 		messages: Anthropic.Messages.MessageParam[],
+		tools?: Anthropic.Tool[],
 	): AsyncGenerator<ApiStreamChunk> {
 		let { id: modelId, maxTokens, thinking, temperature, topP } = this.getModel()
 

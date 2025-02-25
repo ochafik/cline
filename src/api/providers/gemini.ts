@@ -18,7 +18,11 @@ export class GeminiHandler extends BaseProvider implements SingleCompletionHandl
 		this.client = new GoogleGenerativeAI(options.geminiApiKey ?? "not-provided")
 	}
 
-	override async *createMessage(systemPrompt: string, messages: Anthropic.Messages.MessageParam[]): ApiStream {
+	override async *createMessage(
+		systemPrompt: string,
+		messages: Anthropic.Messages.MessageParam[],
+		tools?: Anthropic.Tool[],
+	): ApiStream {
 		const model = this.client.getGenerativeModel({
 			model: this.getModel().id,
 			systemInstruction: systemPrompt,

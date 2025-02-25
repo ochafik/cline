@@ -50,7 +50,11 @@ export class MistralHandler extends BaseProvider implements SingleCompletionHand
 		return "https://api.mistral.ai"
 	}
 
-	override async *createMessage(systemPrompt: string, messages: Anthropic.Messages.MessageParam[]): ApiStream {
+	override async *createMessage(
+		systemPrompt: string,
+		messages: Anthropic.Messages.MessageParam[],
+		tools?: Anthropic.Tool[],
+	): ApiStream {
 		const response = await this.client.chat.stream({
 			model: this.options.apiModelId || mistralDefaultModelId,
 			messages: [{ role: "system", content: systemPrompt }, ...convertToMistralMessages(messages)],

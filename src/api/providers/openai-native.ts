@@ -25,7 +25,11 @@ export class OpenAiNativeHandler extends BaseProvider implements SingleCompletio
 		this.client = new OpenAI({ apiKey })
 	}
 
-	override async *createMessage(systemPrompt: string, messages: Anthropic.Messages.MessageParam[]): ApiStream {
+	override async *createMessage(
+		systemPrompt: string,
+		messages: Anthropic.Messages.MessageParam[],
+		tools?: Anthropic.Tool[],
+	): ApiStream {
 		const modelId = this.getModel().id
 
 		if (modelId.startsWith("o1")) {

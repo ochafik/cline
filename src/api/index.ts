@@ -25,7 +25,11 @@ export interface SingleCompletionHandler {
 }
 
 export interface ApiHandler {
-	createMessage(systemPrompt: string, messages: Anthropic.Messages.MessageParam[]): ApiStream
+	createMessage(
+		systemPrompt: string,
+		messages: Anthropic.Messages.MessageParam[],
+		tools?: Anthropic.Tool[],
+	): ApiStream
 	getModel(): { id: string; info: ModelInfo }
 
 	/**
